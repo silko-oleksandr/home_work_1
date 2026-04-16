@@ -1,5 +1,4 @@
 # Ex 1
-from selectors import SelectSelector
 
 lst = [1, 2, 3, 4, 5]
 
@@ -22,7 +21,7 @@ second_number = float(input("Enter second number: "))
 operation = input("Enter operation +, -, *, /: ")
 result = 0
 if operation == "+":
-    result = first_number + second_numbere
+    result = first_number + second_number
 elif operation == "-":
     result = first_number - second_number
 elif operation == "*":
