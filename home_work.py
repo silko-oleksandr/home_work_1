@@ -1,28 +1,76 @@
-# Ex 4.3
-import random
-length = random.randint(3, 10)
-original_list = [random.randint(1, 100) for _ in range(length)]
-new_list = [original_list[0] ,
-original_list[2], original_list[-2]]
-print(f"{original_list} == {new_list}")
+#Ex 5.1
 
-#Ex 4.2
-def sum_even_index_multiply_last(arr) :
-    if not arr:
-        return 0
-    sum_even = sum( arr[i] for i in range(0,len(arr), 2))
-    return sum_even * arr[-1]
-print (sum_even_index_multiply_last([0, 1, 7, 2, 4, 8]))
-print (sum_even_index_multiply_last([1, 2, 3,  5,]))
-print (sum_even_index_multiply_last([6]))
-print (sum_even_index_multiply_last([]))
+from string import digits, punctuation, digits
+from keyword import kwlist
 
-#Ex 4.1
-def move_zeros_to_end(lst) :
-  non_zeros = [x for x in lst if x != 0]
-  zeros_count = lst.count(0)
-  return non_zeros + [0] * zeros_count
-print (move_zeros_to_end([0, 1, 0, 12, 3]))
-print (move_zeros_to_end([0]))
-print (move_zeros_to_end([1, 0, 13, 0, 0, 5]))
-print (move_zeros_to_end([9, 0, 7, 31, 0, 45, 0, 45, 0, 0, 96, 0]))
+user_var = input('Enter you variable example: ')
+prohibited_symbol = punctuation.replace('-', ' ')
+
+is_contain_prohibited_symbol = False
+is_contain_uppercase = False
+is_contain_prohibited_symbols = False
+for char in user_var:
+    if char.isupper():
+        is_contain_uppercase = True
+        continue
+    if char in prohibited_symbol:
+     is_contain_prohibited_symbols = True
+is_var_acceptable = (not user_var[0] in digits and not is_contain_uppercase and not is_contain_prohibited_symbols
+                     and not user_var in kwlist and not '__' in user_var)
+print(f'Is our {user_var} variable is acceptable? {is_var_acceptable}')
+
+#Ex 5.2
+def calculator():
+    print("Welcome to the calculator")
+    while True:
+        try:
+            num1 = float(input("Enter first number: "))
+            operation = input("Enter operation (+, -, *, /): ")
+            num2 = float(input("Enter second number: "))
+        except ValueError:
+            print("Error: invalid input")
+            continue
+        if operation == '+':
+            result = num1 + num2
+        elif operation == '-':
+            result = num1 - num2
+        elif operation == '*':
+            result = num1 * num2
+        elif operation == '/':
+            if num2 != 0:
+                result = num1 / num2
+            else:
+                print("Error: division by zero!")
+                continue
+        else:
+            print("Unknown operation")
+            continue
+        print(f"Result: {num1} {operation} {num2} = {result}")
+        while True:
+            choice = input("Do another? (y/n): ").strip().lower()
+            if choice == 'y' or choice == 'yes':
+                break
+            elif choice == 'n' or choice == 'no':
+                print("Thank you!")
+                return
+            else:
+                print("Please enter y or n")
+if __name__ == '__main__':
+    calculator()
+
+#ex 5.3
+import string
+
+def make_hashtag(text):
+    for p in string.punctuation:
+        text = text.replace(p, ' ')
+    words = text.split()
+    capitalized = [word.capitalize() for word in words]
+    result = '#' + ''.join(capitalized)
+    if len(result) > 140:
+        result = result[:140]
+    return result
+
+if __name__ == '__main__':
+    user_input = input("Enter a string: ")
+    print(make_hashtag(user_input))
