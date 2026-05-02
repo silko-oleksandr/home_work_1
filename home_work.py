@@ -1,41 +1,21 @@
-#Ex 6.1
-import string
-
-user_input = input().strip()
-first, second = user_input.split('-')
-alphabet = string.ascii_letters
-index1 = alphabet.index(first)
-index2 = alphabet.index(second)
-start = min(index1, index2)
-end = max(index1, index2) + 1
-print(alphabet[start:end])
-
-#Ex 6.2
-seconds = int(input().strip())
-
-days = seconds // 86400
-remainder = seconds % 86400
-hours = remainder // 3600
-remainder %= 3600
-minutes = remainder // 60
-secs = remainder % 60
-
-if days % 10 == 1 and days % 100 != 11:
-    day_word = "день"
-elif days % 10 in (2, 3, 4) and days % 100 not in (12, 13, 14):
-    day_word = "дні"
-else:
-    day_word = "днів"
-
-print(f"{days} {day_word}, {hours:02d}:{minutes:02d}:{secs:02d}")
-#Ex 6.3
-def multiply_digits(n):
-    if n <= 9:
-        return n
-    product = 1
-    for digit in str(n):
-        product *= int(digit)
-    return multiply_digits(product)
-
-n = int(input().strip())
-print(multiply_digits(n))
+#Ex 7.1
+def say_hi(name, age):
+    return f"Hi. My name is {name} and I'm {age} years old"
+#Ex 7.2
+def correct_sentence(text):
+    text = text[0].upper() + text[1:] if text else text
+    if not text.endswith('.'):
+        text += '.'
+    return text
+#Ex 7.3
+def second_index(text, some_str):
+    first = text.find(some_str)
+    if first == -1:
+        return None
+    second = text.find(some_str, first + 1)
+    return second if second != -1 else None
+#Ex 7.4
+def common_elements():
+    multiples_of_3 = {x for x in range(100) if x % 3 == 0}
+    multiples_of_5 = {x for x in range(100) if x % 5 == 0}
+    return multiples_of_3 & multiples_of_5
