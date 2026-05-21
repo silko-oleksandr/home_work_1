@@ -1,18 +1,22 @@
-#Ex 9.1
-def popular_words(text, words):
-    for ch in ".,!?;:-_—\n\r\t":
-        text = text.replace(ch, ' ')
-
-    word_list = text.lower().split()
-    result = {word: 0 for word in words}
-
-    for w in word_list:
-        if w in result:
-            result[w] += 1
-
-    return result
-#Ex 9.2
-def difference(*args):
-    if not args:
-        return 0
-    return round(max(args) - min(args), 2)
+#10.1
+def some_gen(begin, end, func):
+    current = begin
+    for _ in range(end):
+        yield current
+        current = func(current)
+#10.2
+def first_word(text):
+    for i, char in enumerate(text):
+        if char.isalpha() or char == "'":
+            start = i
+            break
+    for i in range(start, len(text)):
+        if not (text[i].isalpha() or text[i] == "'"):
+            return text[start:i]
+    return text[start:]
+#10.3
+def is_even(digit):
+    """
+    Перевірка чи є парним число
+    """
+    return digit % 2 == 0
