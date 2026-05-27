@@ -1,4 +1,4 @@
-#12.1
+ #12.1
 def prime_generator(end):
     for num in range(2, end + 1):
         for divisor in range(2, int(num ** 0.5) + 1):
@@ -6,7 +6,7 @@ def prime_generator(end):
                 break
         else:
             yield num
-#12.2
+ #12.2
 def generate_cube_numbers(end):
     num = 2
     while True:
@@ -15,6 +15,6 @@ def generate_cube_numbers(end):
             return
         yield cube
         num += 1
-#12.3
+ #12.3
 def is_even(number):
     return (number & 1) == 0
